@@ -1,0 +1,9 @@
+C:\Users\mo379\source\repos\TestServices\TestCommon\bin\Debug\netstandard2.0\TestCommon.deps.json
+C:\Users\mo379\source\repos\TestServices\TestCommon\bin\Debug\netstandard2.0\TestCommon.dll
+C:\Users\mo379\source\repos\TestServices\TestCommon\bin\Debug\netstandard2.0\TestCommon.pdb
+C:\Users\mo379\source\repos\TestServices\TestCommon\obj\Debug\netstandard2.0\TestCommon.csproj.CoreCompileInputs.cache
+C:\Users\mo379\source\repos\TestServices\TestCommon\obj\Debug\netstandard2.0\TestCommon.AssemblyInfoInputs.cache
+C:\Users\mo379\source\repos\TestServices\TestCommon\obj\Debug\netstandard2.0\TestCommon.AssemblyInfo.cs
+C:\Users\mo379\source\repos\TestServices\TestCommon\obj\Debug\netstandard2.0\TestCommon.dll
+C:\Users\mo379\source\repos\TestServices\TestCommon\obj\Debug\netstandard2.0\TestCommon.pdb
+C:\Users\mo379\source\repos\TestServices\TestCommon\obj\Debug\netstandard2.0\TestCommon.csprojAssemblyReference.cache
