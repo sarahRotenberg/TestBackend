@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -26,23 +26,9 @@ namespace TestServices.Controllers
         public ActionResult<List<Application>> GetApplications()
         {
 
-            string data;
+           
             string url = "https://rpnszaidmg.execute-api.eu-west-1.amazonaws.com/Prod/applications";
-           // string data = Helper.GetAwsApi(url);
-
-            //todo:remark
-
-            data = @" [{""id"": 1,
-        ""firstName"": ""Charlee"",
-        ""lastName"": ""Davenport""
-    },
-    {
-                ""id"": 2,
-        ""firstName"": ""Summer"",
-        ""lastName"": ""Mccann""
-    } ]";
-
-
+            string data = Helper.GetAwsApi(url);
 
             IList<Application> validApplictions;
             validApplictions = Helper.DeserializeToList<Application>(data);
@@ -58,26 +44,8 @@ namespace TestServices.Controllers
         {
             string data;
             string url = "https://rpnszaidmg.execute-api.eu-west-1.amazonaws.com/Prod/cards/" + appId;
-          //   data = Helper.GetAwsApi(url);
-            //todo:remark
-            data = @" [{
-        ""id"": 1,
-        ""cardNo"": 533715687715708,
-        ""issuer"": ""Mastercard""
-    },
-    {
-        ""id"": 2,
-        ""cardNo"": 422651798124325,
-        ""issuer"": ""Visa""
-    },
-    {
-        ""id"": 3,
-        ""cardNo"": 650072579646228,
-        ""issuer"": ""Mastercard""
-    } ]";
-
-
-
+            data = Helper.GetAwsApi(url);
+            
             IList<Card> validCards;
             validCards = Helper.DeserializeToList<Card>(data);
 
@@ -92,51 +60,8 @@ namespace TestServices.Controllers
         {
 
             string url = "https://rpnszaidmg.execute-api.eu-west-1.amazonaws.com/Prod/trans/" + appId;
-            //  string data = Helper.GetAwsApi(url);
-            //todo:remark
-            string data;
-            if (appId==1)
-            data = @" [ {
-        ""id"": 1,
-        ""transType"": 1,
-        ""amount"": 336,
-        ""cardId"": 2
-    },
-    {
-        ""id"": 2,
-        ""transType"": 3,
-        ""amount"": 972,
-        ""cardId"": 2
-    },
-    {
-       ""id"": 3,
-        ""transType"": 2,
-        ""amount"": 778,
-        ""cardId"": 1
-    },
-    {
-        ""id"": 4,
-        ""transType"": 3,
-        ""amount"": 321,
-        ""cardId"": 2
-    } ]";
-
-            else
-
-                data = @" [ 
-    {
-       ""id"": 3,
-        ""transType"": 2,
-        ""amount"": 778,
-        ""cardId"": 1
-    },
-    {
-        ""id"": 4,
-        ""transType"": 3,
-        ""amount"": 321,
-        ""cardId"": 2
-    } ]";
-
+              string data = Helper.GetAwsApi(url);
+            
 
             IList<Trans> validTrans;
             validTrans = Helper.DeserializeToList<Trans>(data);
@@ -194,17 +119,31 @@ namespace TestServices.Controllers
             try
             {
 
+
+
+
                 //// Create request object
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
                 WebRequest request = WebRequest.Create(url);
                 request.Method = "GET";
                 request.Headers.Add("Authorization", "9874654654987654658");
                 request.ContentType = "application/json";
                 HttpWebResponse response;
                 response = request.GetResponse() as HttpWebResponse;
+                var dataStream = response.GetResponseStream();
+                // Open the stream using a StreamReader
+                StreamReader reader = new StreamReader(dataStream);
+                // Read the content.
+                string responseFromServer = reader.ReadToEnd();
 
+                
 
-                return response.ToString();
+                // Clean up the streams.
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+
+                return responseFromServer;
 
             }
             catch (Exception e)
